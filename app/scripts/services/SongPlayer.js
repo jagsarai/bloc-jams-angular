@@ -24,6 +24,14 @@
 			song.playing = true;
 		};
 		
+		/** funstopSong 
+		@desc Stops the currrently playing song
+		*/
+		var stopSong = function(song){
+			currentBuzzObject.stop();
+			song.playing = null;
+		}
+		
 		 /**
  		* @function setSong
  		* @desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -44,24 +52,24 @@
 		};
 		
 		/**
-		@ function getSongIndex
-		@ desc Gets the current index of the song
-		@ @param {Object} song
+		@function getSongIndex
+		@desc Gets the current index of the song
+		@param {Object} song
 		*/
 		var getSongIndex = function(song){
 			return currentAlbum.songs.indexOf(song);
 		};
 		/**
-		@ desc Active song object from list of songs
-		@ type {Object}
+		@desc Active song object from list of songs
+		@type {Object}
 		*/
 		SongPlayer.currentSong = null;
 		
 		SongPlayer.play = function(song){
 			song = song || SongPlayer.currentSong;
 			if(SongPlayer.currentSong !== song){
-			setSong(song);
-			playSong(song);	
+				setSong(song);
+				playSong(song);	
 			}
 			else if(SongPlayer.currentSong === song){
 				if(currentBuzzObject.isPaused()){
@@ -76,17 +84,31 @@
 			song.playing = false;
 		};
 		
+		
 		/**
-		@ desc Previous song objet form the list of songs in Album
-		@ type {Object}
+		@desc Previous song objet form the list of songs in Album
+		@type {Object}
 		*/
 		SongPlayer.previous = function(){
 			var currentSongIndex = getSongIndex(SongPlayer.currentSong);
 			currentSongIndex--;
 			
 			if(currentSongIndex < 0){
-				currentBuzzObject.stop();
-				SongPlayer.currentSong.playing = null;
+				stopSong(SongPlayer.currentSong);
+			}
+			else{
+				var song = currentAlbum.songs[currentSongIndex];
+				setSong(song);
+				playSong(song);
+			}
+		}
+		
+		SongPlayer.next = function(){
+			var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+			currentSongIndex++;
+			
+			if(currentSongIndex > currentAlbum.songs.length - 1){
+				stopSong(SongPlayer.currentSong);
 			}
 			else{
 				var song = currentAlbum.songs[currentSongIndex];
