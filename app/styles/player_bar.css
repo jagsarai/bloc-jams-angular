@@ -155,9 +155,8 @@
 
 @media (max-width: 640px) {
     .player-bar {
-        paddingwidth rem;
-        backgr
-                            height 100ms ease-in-out;ound-color: rgba(0,0,0,0.6);
+        padding: 1rem;
+        background-color: rgba(0,0,0,0.6);
     }
  
     .player-bar .main-controls,

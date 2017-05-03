@@ -15,26 +15,26 @@
 			restrict: 'E',
 			scope: { 
 				onChange: '&'
-			}, //scope is isolated and reusable
+			},
 			link: function(scope, element, attributes){
 				scope.value = 0;
 				scope.max = 100;
 				
 				var seekBar = $(element);
 				
-				attributes.$observe('value', function(newValue){
-					scope.value = newValue;
-				});
-				
-				attributes.$observe('max', function(newValue){
-					scope.max = newValue;
-				});
+				 attributes.$observe('value', function(newValue) {
+					 scope.value = newValue;
+				 });
+
+				 attributes.$observe('max', function(newValue) {
+					 scope.max = newValue;
+				 });
 				
 				var percentString = function(){
 					var value = scope.value;
 					var max = scope.max;
-					var percent = value/max * 100;
-					return percent + '%';
+					var percent = (value/max) * 100;
+					return percent + "%";
 				}
 				
 				scope.fillStyle = function(){
