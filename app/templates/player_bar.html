@@ -28,9 +28,11 @@
                 <div class="total-time">{{ playerBar.songPlayer.currentSong.duration | timecode}}</div>
             </div>
         </div>
-        <div class="control-group volume">
-            <span class="icon ion-volume-high"></span>
-            <seek-bar value="{{ playerBar.songPlayer.volume }}" max="100" on-change="playerBar.songPlayer.setVolume(value)"></seek-bar>
+        <div class="control-group volume" >
+			<span ng-click="playerBar.songPlayer.toggleMute()">
+				<volume class="icon ion-volume-high" ></volume>
+			</span>
+			<seek-bar id="volumeSeek" value="{{ playerBar.songPlayer.volume }}" max="100" on-change="playerBar.songPlayer.setVolume(value)"></seek-bar>
         </div>
     </div>
 </section>

@@ -16,6 +16,12 @@
 		var currentBuzzObject = null;
 		
 		/**
+		* @desc current volume of audio file 
+		* @type Number
+		*/
+		var currentVolume = null;
+		
+		/**
 		* @function playSong
 		* @desc Plays the audio file and set song is playing in view.
 		* @param {Object} song
@@ -52,6 +58,9 @@
 				$rootScope.$apply(function() {
 					SongPlayer.currentTime = currentBuzzObject.getTime();
 				});
+				if(currentBuzzObject.isEnded()){ 
+					SongPlayer.next();
+				}
 			});
 			SongPlayer.currentSong = song;
 		};
@@ -78,7 +87,7 @@
 		SongPlayer.currentTime = null;
 		
 		/**
-		* @desc Current playback volume of currently playing song(default at 60)
+		* @desc Current playback volume of currently playing song(default at 80)
 		* @type {Number}
 		*/
 		SongPlayer.volume = 80;
@@ -88,10 +97,7 @@
 			song = song || SongPlayer.currentSong;
 			if(SongPlayer.currentSong !== song){
 				setSong(song);
-				console.log(currentBuzzObject);
-				console.log(buzz.isSupported());
-				playSong(song);	
-				console.log(song);
+				playSong(song);
 			}
 			else if(SongPlayer.currentSong === song){
 				if(currentBuzzObject.isPaused()){
@@ -160,6 +166,23 @@
 				currentBuzzObject.setVolume(volume);
 			}
 			SongPlayer.volume = volume;
+		}
+		
+		
+		/**
+        * @function mute
+        * @desc Toggles the mute on currently playing song
+        */
+		SongPlayer.toggleMute = function(){
+			if(currentBuzzObject && !currentBuzzObject.isMuted()){
+				currentVolume = SongPlayer.volume;
+				currentBuzzObject.mute();
+				SongPlayer.setVolume(0);
+			}
+			else if(currentBuzzObject && currentBuzzObject.isMuted()){
+				currentBuzzObject.unmute();
+				SongPlayer.setVolume(currentVolume);
+			}
 		}
 		
 		return SongPlayer;
