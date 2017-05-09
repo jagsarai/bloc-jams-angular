@@ -1,0 +1,23 @@
+
+<section class="hero-content">
+     <h1 class="hero-title">Please Log In</h1>
+</section>
+
+<div class="container">
+	<form name="logInForm" ng-submit="submit()">
+		
+	  <div class="form-group">
+		<label for="LogInUsername">Username</label>
+		<input type="text" class="form-control" id="LogInUsername" placeholder="Username" ng-model="username" required>
+		<span ng-show="logInForm.username.$touched && logInForm.username.$in-valid">Username is required</span>
+	  </div>
+		  
+	  <div class="form-group">
+		<label for="LogInPassword">Password</label>
+		<input type="password" class="form-control" id="LogInPassword" placeholder="Password" ng-model="password" required>
+	  </div>
+		
+	  <button type="submit" class="btn btn-default">Submit</button>
+		
+	</form>
+</div>

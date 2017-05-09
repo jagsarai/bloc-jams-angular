@@ -1,0 +1,26 @@
+<section class="hero-content">
+     <h1 class="hero-title">Please Sign Up</h1>
+</section>
+
+<div class="container">
+	<form name="signUpForm" ng-submit="save(user)">
+		
+	  <div class="form-group">
+		<label for="signUpName">Name</label>
+		<input type="text" class="form-control" id="signUpName" placeholder="Name" ng-model="user.name" required>
+	  </div>
+		
+	  <div class="form-group">
+		<label for="LogInUsername">Username</label>
+		<input type="text" class="form-control" id="LogInUsername" placeholder="Username" ng-model="user.username" required>
+	  </div>
+		  
+	  <div class="form-group">
+		<label for="LogInPassword">Password</label>
+		<input type="password" class="form-control" id="LogInPassword" placeholder="Password" ng-model="user.password" required>
+	  </div>
+		
+	  <button type="submit" class="btn btn-default">Save</button>
+		
+	</form>
+</div>

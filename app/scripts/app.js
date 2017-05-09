@@ -20,6 +20,17 @@
 				url: '/collection',
 				controller: 'CollectionCtrl as collection',
 				templateUrl: '/templates/collection.html'
+			})
+			.state('log-in', {
+				url: '/log-in',
+				controller: 'LogInCtrl as logIn',
+				controller: 'FormCtrl as form',
+				templateUrl: '/templates/log-in.html'
+			})
+			.state('sign-up',{
+				url: '/sign-up',
+				controller: 'SignUpCtrl as signUp',
+				templateUrl: '/templates/sign-up.html'
 			});
 	}
 	
